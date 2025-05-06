@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
+  <style>
+    body {
+      background-color: powderblue;
+    }
+    input, button {
+      margin: 10px;
+      padding: 8px;
+    }
+    #result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>BMI Calculator</h1>
+  <p>Enter your weight and height to calculate your BMI:</p>
+
+  <input type="number" id="weight" placeholder="enter ur weight in kg">
+  <br>
+  <input type="number" id="height" placeholder="enter ur height in cm">
+  <br>
+  <button onclick="calculateBMI()">Calculate BMI</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateBMI() {
+      let weight = document.getElementById("weight").value;
+      let height = document.getElementById("height").value;
+
+      if (weight && height) {
+        height = height / 100;
+        let bmi = weight / (height * height);
+        let status = "";
+
+        if (bmi < 18.5) status = "Underweight";
+        else if (bmi < 25) status = "Normal weight";
+        else if (bmi < 30) status = "Overweight";
+        else status = "Obese";
+
+        document.getElementById("result").innerText =
+          `Your BMI is {bmi.toFixed(1)} (${status})`;
+      } else {
+        document.getElementById("result").innerText = "Please enter both weight and height.";
+      }
+    }
+  </script>
+
+</body>
+</html>
